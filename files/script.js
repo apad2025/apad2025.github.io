@@ -4,7 +4,7 @@ const options = {
   left: 'unset', // default: 'unset'
   time: '0.5s', // default: '0.3s'
   mixColor: '#fff', // default: '#fff'
-  backgroundColor: '#fff',  // default: '#fff'
+  backgroundColor: '#dfdedb',  // default: '#fff'
   buttonColorDark: '#100f2c',  // default: '#100f2c'
   buttonColorLight: '#fff', // default: '#fff'
   saveInCookies: true, // default: true,
@@ -15,3 +15,12 @@ const options = {
 const darkmode = new Darkmode(options);
 
 darkmode.showWidget();
+
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
