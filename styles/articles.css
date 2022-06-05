@@ -17,7 +17,7 @@
 
 img {
     width: 100%;
-    max-width: 600px;
+    max-width: 100%;
     height: auto;
     border-radius: 20px;
 }
@@ -28,4 +28,13 @@ img {
 
 .wrap {
     word-wrap: break-word;
+}
+
+.inline {
+    display: inline;
+    font-size: 44px;
+}
+
+.small {
+    font-size: 16px
 }
