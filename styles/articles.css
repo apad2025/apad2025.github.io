@@ -25,3 +25,7 @@ img {
 .noUnderline {
     text-decoration: none;
 }
+
+.wrap {
+    word-wrap: break-word;
+}
