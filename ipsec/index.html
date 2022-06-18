@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Creating an IPsec VPN on Ubuntu 22.04 | ipsec</title>
+<meta name="generator" content="Jekyll v3.9.2">
+<meta property="og:title" content="Creating an IPsec VPN on Ubuntu 22.04">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://apad.live/ipsec/">
+<meta property="og:url" content="http://apad.live/ipsec/">
+<meta property="og:site_name" content="ipsec">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Creating an IPsec VPN on Ubuntu 22.04">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","headline":"Creating an IPsec VPN on Ubuntu 22.04","name":"ipsec","url":"http://apad.live/ipsec/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <style class="anchorjs"></style><link rel="stylesheet" href="https://piano.apad.live/assets/css/style.css?v=6039f04456675b73450bfd9419509e10a18d725c">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/ipsec/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://apad.live/ipsec/">ipsec</a></h1>
+      
+
+      <h1 id="creating-an-ipsec-vpn-on-ubuntu-2204">Creating an IPsec VPN on Ubuntu 22.04</h1>
+
+<h2 id="setupsh">Setup.sh<a class="anchorjs-link " href="#setupsh" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+
+<p>Open a terminal and run <code class="language-plaintext highlighter-rouge">mkdir ikev2</code></p>
+
+<p>Open a terminal and run <code class="language-plaintext highlighter-rouge">cd ikev2</code></p>
+
+<p>Run the following commands:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://raw.githubusercontent.com/jawj/IKEv2-setup/master/setup.sh
+chmod u+x setup.sh
+sudo ./setup.sh
+</code></pre></div></div>
+
+<p>Note: You may need to remove the <code class="language-plaintext highlighter-rouge">[[
+ $(lsb_release -rs) == "18.04" ]] || [[ $(lsb_release -rs) == "20.04" ]]
+ || exit_badly "This script is for Ubuntu 20.04 or 18.04 only: aborting 
+(if you know what you're doing, try deleting this check)"</code> line if you get an error saying your OS is not supported</p>
+
+<p>Enter the <a href="https://en.wikipedia.org/wiki/Hostname">hostname</a> for your VPN. If you do not have a domain, free ones are available at <a href="https://www.noip.com/">No-IP</a>.</p>
+
+<p>Create the VPN username and password</p>
+
+<p>Choose a DNS server</p>
+
+<p>Skip the timezone part</p>
+
+<p>Enter an email address if you’d like</p>
+
+<p>Skip the SSH port part</p>
+
+<p>Create an SSH username and password</p>
+
+<h2 id="ipsec">IPsec<a class="anchorjs-link " href="#ipsec" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+
+<p>Open a terminal and run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install libreswan
+sudo ipsec start
+sudo ipsec status If you get the error `whack: Pluto is not running (no "/var/run/pluto/pluto.ctl")` after running the last command, running `sudo ipsec pluto` should fix it
+</code></pre></div></div>
+
+<h2 id="user-management-and-psk">User management and PSK<a class="anchorjs-link " href="#user-management-and-psk" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>In order to add a user, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://get.vpnsetup.net -O vpn.sh &amp;&amp; sudo sh vpn.sh
+sudo addvpnuser.sh Now, the last piece of information we need is the [Pre-shared key](https://en.wikipedia.org/wiki/Pre-shared_key). Run:
+
+sudo cat /etc/ipsec.secrets to find it ## Client Configuration
+</code></pre></div></div>
+
+<h3 id="ios">iOS<a class="anchorjs-link " href="#ios" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h3>
+
+<p>Open Settings and navigate through the following menus:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>General
+VPN &amp; Device Management
+VPN Next follow these steps:  1. Click Add VPN Configuration... 2. Change type to IPsec 3. Enter any description 4. Enter the hostname we specified earlier 5. Enter the username 6. Enter the password 7. Enter the PSK  
+</code></pre></div></div>
+
+
+      
+    </div>
+    <script src="ipsec_files/anchor.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  
+
+</body></html>
