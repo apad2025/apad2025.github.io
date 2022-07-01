@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "AvenirNext";
+    src: url(/fonts/AvenirNextLTPro-Regular.otf);
+}
+
+@font-face {
+    font-family: "AvenirBold";
+    src: url(/fonts/AvenirNextLTPro-Bold.otf);
+}
+
+@font-face {
+    font-family: "AvenirItalic";
+    src: url(/fonts/AvenirNextLTPro-It.otf);
+}
+
+* {
+    font-family: "AvenirNext";
+}
+
+a {
+    color: black;
+}
+
+.content {
+    margin: auto;
+    max-width: 655px;
+    line-height: 40px;
+    font-size: 17px;
+    padding: 20px;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(3px 3px 3px #808080);
+}
+
+@media (prefers-color-scheme: dark) {
+    * {
+        background-color: #121212;
+        color: white;
+    }
+
+    a {
+        color: white;
+    }
+}
