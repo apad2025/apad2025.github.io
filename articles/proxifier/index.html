@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styles/articles.css">
+    <base target="_blank">
+
+    <title>Proxifier + Tor</title>
+</head>
+<body>
+    <div class="content">
+        <h1>How to Use Tor with Proxifier</h1>
+        <h3>By <a href="https://apad.live">Alexander Davis</a></h3>
+        <h4>July 10, 2022 | Estimated reading time: 56 seconds</h4>
+        <picture>
+            <source
+            srcset="/images/torDark.png"
+            media="(prefers-color-scheme: dark)">
+            <img src="/images/torLight.png" alt="A picture of the Tor Browser in light mode">
+        </picture>
+        <ol>
+            <li>Download and install <a href="https://www.proxifier.com/">Proxifier</a></li>
+            <li>Download and install <a href="https://www.torproject.org/download/">Tor Browser</a></li>
+            <li>Start Tor Browser and connect to the Tor network. Tor must remain open and connected to the Tor network
+                at all times. If closed out, any apps that are using Proxifier will stop working.
+            </li>
+            <li>Start Proxifier and click "Continue evaluation". Click on "Profile" in the top menu and select "Name Resolution". Deselect Detect DNS settings automatically, select
+                Resolve hostnames through proxy, and click OK to exit.
+            </li>
+            <li>Click Profile again and choose "Proxy Servers". Click Add and enter <span class="highlight">127.0.0.1</span> into the Address field and <span class="highlight">9150</span> into the Port field.
+            Select SOCKS version 5 from the Protocol dropdown. Click Check, and you should see a message saying the proxy is ready. Click OK to save. If you get a message
+        asking to use this proxy by default, click no.</li>
+            <li>
+                Click Profile once more and select Proxification Rules. Double click on the Localhost box, and delete everything in
+                the Target hosts section. Next click Browse under the Applications section and select all apps you want to be proxied. Change Action
+                to Proxy SOCKS5 127.0.0.1 and click OK.
+            </li>
+
+            <p>Congratulations, your Tor proxy should now be working through Proxifier!</p>
+
+        </ol>
+    </div>
+</body>
+</html>

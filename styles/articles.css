@@ -20,6 +20,7 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 20px;
+    filter: drop-shadow(3px 3px 3px #808080);
 }
 
 .noUnderline {
@@ -39,9 +40,17 @@ img {
     font-size: 16px
 }
 
+.highlight {
+    background-color: #ffff00;
+}
+
 @media (prefers-color-scheme: dark) {
     * {
         color: white;
         background-color: #212121;
+    }
+    
+    .highlight {
+        color: black;
     }
 }
