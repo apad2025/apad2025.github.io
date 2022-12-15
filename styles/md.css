@@ -23,9 +23,19 @@
     .markdown-body table th, .markdown-body table td {
         border: 1px solid #2f3640;
     }
+    .markdown-body code {
+        background-color: #343942;
+    }
+    .markdown-body img {
+        background-color: #0d1117;
+    }
 }
 
 /* add smooth scrolling */
 * {
     scroll-behavior: smooth;
+}
+
+img {
+    padding: 20px;
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styles/md.css">
+    <base target="_blank">
+    <link rel="icon" type="image/x-icon" href="/images/wii-U-icon.ico">
+
+    <title>Dump Wii U Discs</title>
+</head>
+<body>
+    <div class="container-lg px-3 my-5 markdown-body">
+        <h1>Steps to repack Wii U games into .wux files</h1>
+        <ol>
+            <li>Format an SD card as FAT32 with a 32KB (32768) allocation using <a href="http://ridgecrop.co.uk/index.htm?guiformat.htm">guiformat</a></li>
+            <li>Download the latest release of <a href="https://tiramisu.foryour.cafe/">Tiramisu</a>, the <a
+                    href="https://github.com/marco-calautti/SigpatchesModuleWiiU/releases">Sigpatches Module</a>, and <a href="https://github.com/wiiu-env/wudd/releases">wudd</a></li>
+            <li>Extract and copy the contents of the Tiramisu folder into the root of your SD card</li>
+            <li>Copy the <code>01_sigpatches.rpx</code> file to <code>/wiiu/environments/tiramisu/modules/setup</code> on your SD card. Create a folder in <code>/wiiu/apps</code> named <code>wudd</code>, then paste the <code>wudd.rpx</code> file into it. The root directory of your SD card should now look similar to this</li>
+            <img src="/images/File-explorer-screenshot.png" alt="">
+            <li>Insert the SD card into your Wii U</li>
+            <li>Go to <a href="https://wiiuexploit.xyz/">wiiuexploit.xyz</a> on your Wii U browser</li>
+            <li>Click on <code>Run Exploit!</code>
+                <ul><li>If your Wii U gets stuck on a white or otherwise frozen screen, wait a few seconds. If nothing happens, reboot the console,
+                    <a href="https://en-americas-support.nintendo.com/app/answers/detail/a_id/1507/~/how-to-delete-the-internet-browser-history">reset the browser’s save data</a> and try again.</li></ul>
+            </li>
+            <li>Select <code>tiramisu</code>, select <code>Homebrew Launcher</code>, select your profile, then launch the app called <code>wudd/wudd.rpx</code></li>
+            <li>Select Dump as WUX, and wait for it to finish</li>
+            <li>Reconnect the SD card to your computer</li>
+            <li>Create a <code>combine.bat</code> file</li>
+            <li>In the file, write <code>copy /b ^
+                game.wux.part1 + ^
+                game.wux.part2 + ^
+                game.wux.part3 ^
+                combinedGame.wux</code> (continue for as many parts as your game is split into)</li>
+            <li>It should look something like this</li>
+            <img src="/images/bat-file.png" alt="">
+            <li>Now run the file, and wait for all of the parts to combine</li>
+
+        </ol>
+    </div>
+</body>
+</html>
