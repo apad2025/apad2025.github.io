@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.main-container {
+    text-align: center;
+}
+
+.counter, .live-counter {
+    font-size: 48px;
+    margin: 20px;
+}
+
+.emoji {
+    font-size: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333;
+        color: white;
+    }
+}
