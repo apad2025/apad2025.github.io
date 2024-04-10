@@ -1,17 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Counter</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s, color 0.5s;
+  }
+
+  .countdown {
+    text-align: center;
+  }
+
+  .fire-emoji {
+    font-size: 3rem; /* increased size */
+  }
+
+  .timer {
+    font-size: 5rem; /* increased size */
+    font-weight: bold;
+  }
+
+  .day-counter {
+    font-size: 2.5rem; /* increased size */
+    margin-bottom: 0.5rem; /* added space */
+  }
+
+  /* Dark mode styles */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .fire-emoji {
+      color: #ff3e00; /* color for the fire emoji in dark mode */
+    }
+  }
+</style>
 </head>
 <body>
-    <div class="main-container">
-        <div id="dayCounter" class="counter">Loading...</div>
-        <div class="emoji">🔥</div>
-        <div id="liveCounter" class="live-counter">00:00:00</div>
-    </div>
-    <script src="script.js"></script>
+<div class="countdown">
+  <div id="days" class="day-counter"></div>
+  <div class="fire-emoji">🔥</div>
+  <div id="time" class="timer"></div>
+</div>
+
+<script>
+// Set the date we're counting down to
+const countDownDate = new Date("May 10, 2024 00:00:00").getTime();
+
+// Update the count down every 1 second
+const x = setInterval(function() {
+  // Get today's date and time
+  const now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  const distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="days"
+  document.getElementById("days").innerHTML = days + " days remaining until 5/10/24";
+    
+  // Output the time in an element with id="time"
+  document.getElementById("time").innerHTML = hours.toString().padStart(2, '0') + ":" 
+  + minutes.toString().padStart(2, '0') + ":" + seconds.toString().padStart(2, '0');
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("days").innerHTML = "EXPIRED";
+    document.getElementById("time").innerHTML = "";
+  }
+}, 1000);
+</script>
 </body>
 </html>
